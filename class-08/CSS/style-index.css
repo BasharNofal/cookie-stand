@@ -1,0 +1,64 @@
+nav {
+    width: 100%;
+    background-color: rgb(54, 54, 54);
+    margin-bottom: 20px;
+    padding: 10px;
+}
+
+nav a {
+    margin-left: 30px;
+    color: lightgray ;
+}
+
+a:link{
+    text-decoration: none;
+}
+
+body {
+    background-image: url("../img/Plain-Wallpapers-HD-A12.jpg");
+}
+
+header {
+    width: 100%;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+header img {
+    position: relative;
+    left: 270px;
+}
+header h2,h4 {
+    text-align: center;
+    
+}
+
+header a {
+    position: absolute;
+    bottom: 100 px;
+    float: right;
+}
+
+main {
+    width: 100%;
+}
+
+table {
+    position: relative;
+    left: 430px;
+    display: inline;
+    text-align: center;
+    margin: 8px;
+    border-collapse: collapse;
+    empty-cells: hide;
+}
+
+table tr,table td{
+    border: 2px black solid;   
+    color: darkred; 
+}
+
+table th {
+    text-transform: capitalize;
+}
+
+
