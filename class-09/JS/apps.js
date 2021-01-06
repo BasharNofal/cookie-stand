@@ -125,5 +125,70 @@ for (var index = 0; index<branches.length;index ++){
     branches[index].hourlyCookies();
     branches[index].render();
 }
+// Seattle.hourlyCookies();
+// Seattle.render();
+// // console.log(Seattle);
+
+// Tokyo.hourlyCookies();
+// Tokyo.render();
+
+// // console.log(Tokyo);
+
+// Dubai.hourlyCookies();
+// Dubai.render();
+// // console.log(Dubai);
+
+// Paris.hourlyCookies();
+// Paris.render();
+// // console.log(Paris);
+
+// Lima.hourlyCookies();
+// Lima.render();
+// // console.log(Lima);
+
+var branchForm = document.getElementById("addBranchForm")
+branchForm.addEventListener('submit', function (event) {
+    event.preventDefault();
+    // console.log(event.target.location.value);
+    var newBrName = event.target.location.value;
+    var newMinCus = event.target.minimumCus.value;
+    var newMaxCus = event.target.maximumCus.value;
+    var newAvgCookies = event.target.averageCookies.value;
+
+    // console.log(newBrName);
+    // console.log(newMaxCus);
+    // console.log(newMinCus);
+    // console.log(newAvgCookies);
+
+    var newBranch = new BranchData(newBrName, newMaxCus, newMinCus, newAvgCookies);
+    // console.log(newBranch);
+    
+    var removeTable = document.getElementById("table");
+    removeTable.remove();
+    
+    initializingTable();
+
+    for (var counter8 = 0;counter8<branches.length;counter8++){
+        branches[counter8].hourlyCookies();
+        branches[counter8].render();
+    }
+    renderBottomRow();
+    // Seattle.hourlyCookies();
+    // Seattle.render();
+    // Tokyo.hourlyCookies();
+    // Tokyo.render();
+    // Dubai.hourlyCookies();
+    // Dubai.render();
+    // Paris.hourlyCookies();
+    // Paris.render();
+    // Lima.hourlyCookies();
+    // Lima.render();
+
+    // newBranch.hourlyCookies();
+    // newBranch.render();
+
+    // renderBottomRow();
+
+});
 
 renderBottomRow();
