@@ -2,32 +2,34 @@
 
 var hours = ['6 am', '7 am', '8 am', '9 am', ' 10 am', ' 11 am', ' 12 pm', ' 1 pm', ' 2 pm', ' 3 pm', ' 4 pm', ' 5 pm', ' 6 pm', ' 7 pm'];
 var hoursAndTot = [" ", '6:00am', '7:00am', '8:00am', '9:00am', ' 10:00am', ' 11:00am', ' 12:00pm', ' 1:00pm', ' 2:00pm', ' 3:00pm', ' 4:00pm', ' 5:00pm', ' 6:00pm', ' 7:00pm', "Daily Location Total"];
-var branches = [Seattle, Tokyo, Dubai, Paris, Lima];
-var brHourlyTot = [];
+var branches = [];
+var brHourlyTotArr = [];
+var finalTotalCookies = 0;
+
 
 function BranchData(name, minCus, maxCus, avgCookiesPerCus) {
     this.name = name;
     this.minCus = minCus;
     this.maxCus = maxCus;
-    this.randCus = 0;
     this.avgCookiesPerCus = avgCookiesPerCus;
     this.amountOfCookies = 0;
     this.cookiesPerHour = [];
     this.totCookies = 0;
+    branches.push(this);
 }
 
 BranchData.prototype.getRandCus = function () {
-    return this.randCus = Math.floor(Math.random() * (this.maxCus - this.minCus + 1) + this.minCus);
+    return Math.floor(Math.random() * (parseInt(this.maxCus) - parseInt(this.minCus)) + parseInt(this.minCus));
 }
 
 BranchData.prototype.getAmountOfCookies = function () {
-    return this.amountOfCookies = this.avgCookiesPerCus * this.getRandCus();
+    return parseFloat(this.avgCookiesPerCus) * this.getRandCus();
 }
 
 BranchData.prototype.hourlyCookies = function () {
-    for (var counter = 0; counter < hours.length; counter++) {
+    for (var counter = 0; counter < hours.length ; counter++) {
         this.cookiesPerHour[counter] = this.getAmountOfCookies();
-        this.totCookies = this.totCookies + this.getAmountOfCookies();
+        this.totCookies +=  this.cookiesPerHour[counter];
     }
     return this.cookiesPerHour;
     // console.log(this.cookiesPerHour);
@@ -74,51 +76,54 @@ BranchData.prototype.render = function () {
     tableRow.appendChild(tableTotCookiesPerBr);
 }
 
-// function renderBottomRow() {
-//     for (var counter4 = 0; counter4 < branches.length; counter4++) {
-//         for (var counter5 = 0; counter5 < hours.length; counter5++) {
-//             brHourlyTot[counter5] += branches[counter4].cookiesPerHour[counter5];
-//             console.log(brHourlyTot);
-//         }
-//     }   
-// }
-// renderBottomRow();
+function renderBottomRow() {
+    for (var counter4 = 0; counter4 < hours.length; counter4++) {
+        var totalBranchPerHour = 0;
+        for (var counter5 = 0; counter5 < branches.length; counter5++) {
+            totalBranchPerHour += branches[counter5].cookiesPerHour[counter4];
+            // brHourlyTot[counter4] +=parseInttotalBranchPerHour; 
+        }
+        brHourlyTotArr.push(totalBranchPerHour);
+    }
+    // console.log(totalBranchPerHour);
+    // console.log(brHourlyTotArr);
+
+    for (var counter6=0; counter6<brHourlyTotArr.length; counter6++){
+        finalTotalCookies += brHourlyTotArr[counter6];
+    }
+    // console.log(finalTotalCookies);
+    
+    var parentTable = document.getElementById("table");
+    var tableRow = document.createElement('tr');
+    parentTable.appendChild(tableRow);
+
+    var tableHourlyTotal = document.createElement('th');
+    tableHourlyTotal.textContent = "Hourly Total";
+    tableRow.appendChild(tableHourlyTotal);
+
+    for (var counter7 = 0; counter7 < hours.length; counter7++) {
+        var tableHourlyCookiesSold = document.createElement('td');
+        tableHourlyCookiesSold.textContent = brHourlyTotArr[counter7];
+        tableRow.appendChild(tableHourlyCookiesSold);
+    }
+
+    var tableFinalTotalCookies = document.createElement('td');
+    tableFinalTotalCookies.textContent = finalTotalCookies;
+    tableRow.appendChild(tableFinalTotalCookies);
+}
 
 initializingTable();
 
 var Seattle = new BranchData("Seattle", 23, 65, 10);
-Seattle.getRandCus();
-Seattle.getAmountOfCookies();
-Seattle.hourlyCookies();
-Seattle.render();
-// console.log(Seattle);
-
 var Tokyo = new BranchData("Tokyo", 3, 24, 2);
-Tokyo.getRandCus();
-Tokyo.getAmountOfCookies();
-Tokyo.hourlyCookies();
-Tokyo.render();
-
-// console.log(Tokyo);
-
 var Dubai = new BranchData("Dubai", 11, 38, 4);
-Dubai.getRandCus();
-Dubai.getAmountOfCookies();
-Dubai.hourlyCookies();
-Dubai.render();
-// console.log(Dubai);
-
 var Paris = new BranchData("Paris", 20, 38, 6);
-Paris.getRandCus();
-Paris.getAmountOfCookies();
-Paris.hourlyCookies();
-Paris.render();
-// console.log(Paris);
-
 var Lima = new BranchData("Lima", 2, 16, 3);
-Lima.getRandCus();
-Lima.getAmountOfCookies();
-Lima.hourlyCookies();
-Lima.render();
-// console.log(Lima);
 
+
+for (var index = 0; index<branches.length;index ++){
+    branches[index].hourlyCookies();
+    branches[index].render();
+}
+
+renderBottomRow();

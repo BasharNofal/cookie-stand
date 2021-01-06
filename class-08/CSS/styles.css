@@ -1,4 +1,29 @@
-table ,tr,td {
-    border: 1px solid black;
+table ,tr,td,th {
+    position: relative;
+    left: 20px;
+    border: 2px solid brown;
     border-collapse: collapse;
+    color: grey;    
+    empty-cells: hide;
+}
+
+table {
+    margin: 50px;
+}
+
+fieldset form label {
+    font-weight: bold;
+    color: maroon;
+}
+
+body {
+    background-image: url("../img/Plain-Wallpapers-HD-A12.jpg");
+}
+
+#table{
+    text-align: center;
+}
+
+table th{
+    text-transform: uppercase;
 }
