@@ -1,0 +1,49 @@
+nav {
+    width: 100%;
+    background-color: rgb(54, 54, 54);
+    margin-bottom: 20px;
+    padding: 10px;
+}
+
+fieldset legend{
+    color: burlywood;
+}
+
+nav a {
+    margin-left: 30px;
+    color: lightgray ;
+}
+
+a:link{
+    text-decoration: none;
+}
+table ,tr,td,th {
+    border: 2px solid brown;
+    border-collapse: collapse;
+    color: grey;    
+    empty-cells: hide;
+    background-color: #cfae80 ;
+}
+
+table {
+    margin: auto;
+    margin-top: 30px;
+}
+
+fieldset form label {
+    font-weight: bold;
+    color: maroon;
+}
+
+body {
+    background-image: url("../img/Plain-Wallpapers-HD-A12.jpg");
+}
+
+#table{
+    text-align: center;
+}
+
+table th{
+    text-transform: uppercase;
+}
+
